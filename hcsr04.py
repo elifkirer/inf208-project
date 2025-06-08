@@ -1,10 +1,10 @@
 import RPi.GPIO as GPIO
 import time
-GPIO.setmode(GPIO.BOARD)
+GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 
-TRIG = 23
-ECHO = 24
+TRIG = 11 # BOARD da 23
+ECHO = 8 # BOARD da 24
 
 print ("HC-SR04 mesafe sensoru")
 
