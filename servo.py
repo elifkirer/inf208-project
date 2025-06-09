@@ -8,24 +8,35 @@ SERVO = 18 # BOARD da 12
 
 GPIO.setup(SERVO, GPIO.OUT)
 
-pwm = GPIO.PWM(SERVO, 100)
+pwm = GPIO.PWM(SERVO, 50)
 # servolar icin genel olarak 50Hz kullanilir
-pwm.start(5)
+pwm.start(0)
 
 def setAngle(angle):
     duty = float(angle) / 10.0 + 2.5
     pwm.ChangeDutyCycle(duty)
+    time.sleep(0.5)
+    pwm.ChangeDutyCycle(0)
 
 try:
     
-    
-#     while True:
-    i = 10 # +90 derece dondurur
-    print ("angle = ", 90)
-    setAngle(i)
+    print ("angle = ", 80)
+    setAngle(80)
     time.sleep(1)
-        
+    
+    print ("angle = ", 35)
+    setAngle(35)
+    time.sleep(1)
+    
+    """
+    istenilen acinin ayarlanmasi icin
+    aci degerleri manuel ayarlandı
+    (45 derece donecek)
+    """    
 except KeyboardInterrupt:
-    pwm.stop(5) # -90 derece dondurur
-    GPIO.cleanup()
+    pass
+    
+finally:
+    pwm.stop() 
+    GPIO.cleanup()    
     
